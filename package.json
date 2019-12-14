@@ -1,0 +1,34 @@
+{
+  "name": "MMM-Postnord",
+  "version": "1.0.0",
+  "description": "Magic Mirror Module - Automatically track and trace PostNords letters, parcels and pallets with your phone number or email",
+  "main": "MMM-Postnord.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "lodash": "^4.17.15",
+    "lodash.merge": "^4.6.2",
+    "lowdb": "^1.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "string-format": "^2.0.0",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bureus/MMM-Postnord.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bureus/MMM-Postnord/issues"
+  },
+  "homepage": "https://github.com/bureus/MMM-Postnord#readme"
+}

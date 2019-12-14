@@ -1,0 +1,6 @@
+{
+    "CONNECTING": "Liittäminen..",
+    "MISSING_SUBSCRIPTION": "Puhelinnumeroa tai sähköpostia ei ole annettu, katso README",
+    "ESTIMATED_DELIVERY": "Arvioitu toimitus",
+    "MISSING": "Puuttuva"
+}

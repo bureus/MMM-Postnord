@@ -1,0 +1,6 @@
+{
+    "CONNECTING": "Connecting..",
+    "MISSING_SUBSCRIPTION": "No phone number or email has been provided, please see README",
+    "ESTIMATED_DELIVERY": "Estimated delivery",
+    "MISSING": "Missing"
+}

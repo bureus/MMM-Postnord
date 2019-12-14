@@ -1,0 +1,28 @@
+.package-text {
+  width: 260px;
+}
+
+.package-text span {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 260px;
+  float: left;
+  text-overflow: ellipsis;
+}
+
+.vertical-package-list {
+  width: 400px;
+}
+
+.vertical-package-list .row {
+  overflow: hidden;
+  /*margin: 0px auto;*/
+  /*display: table-row;*/
+  text-overflow: ellipsis;
+  padding-bottom: 5px;
+}
+
+.vertical-package-list .row .block {
+  float: left;
+  text-overflow: ellipsis;
+}
