@@ -253,7 +253,7 @@ async function newSubscription() {
     ) {
       addSubscription(
         subscriptionId,
-        subscriptionId.includes("@") ? "email" : "phone"
+        subscriptionId.includes("@") ? "email" : "phone", language, country
       );
       console.log(
         "Please wait until you recives a 4 digit code on your email: " +
