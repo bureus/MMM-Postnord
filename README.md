@@ -29,15 +29,15 @@ modules: [
 ```
  
 ## Setup subscriptions
-In order to automatically track letters, parcels and pallets based on your phone number or email you need to retrive an access token (hash). In order to-do that you need to run attached program called postnord-hash-generator.js after you have performed ``npm install``. Which will create a local subscription database entry for you. You could add multiple phone numbers or emails. 
+In order to automatically track letters, parcels and pallets based on your phone number or email you need to retrieve an access token (hash). In order to-do that you need to run attached program called postnord-hash-generator.js after you have performed ``npm install``. Which will create a local subscription database entry for you. You could add multiple phone numbers or emails. 
 
 ### postnord-hash-generator.js
-MMM-Postnord uses a local database (db.json) which will contain you subscription information, such as hash, email, phone number, refreshed time etc. In order to run the program you need to navigate to your locale module folder ``../modules/MMM-Postnord/``. Inside the folder run ``$ node postnord-hash-generator.js help``. You will now see what commands is supported and how you could run the diffrent commands. 
+MMM-Postnord uses a local database (db.json) which will contain you subscription information, such as hash, email, phone number, refreshed time etc. In order to run the program you need to navigate to your locale module folder ``../modules/MMM-Postnord/``. Inside the folder run ``$ node postnord-hash-generator.js help``. You will now see what commands is supported and how you could run the different commands. 
 
 ![Help](https://github.com/bureus/MMM-Postnord/blob/master/docs/help.png)
 
 #### Create a new subscription
-Run ``$ node postnord-hash-generator.js new`` this will prompt you to enter subscription id (supports phone number (example: 46727777777) or email (example: test@test.com), country and language seperated by SPACE. Please enter input like ``46727777777 SE sv``
+Run ``$ node postnord-hash-generator.js new`` this will prompt you to enter subscription id (supports phone number (example: 46727777777) or email (example: test@test.com), country and language separated by SPACE. Please enter input like ``46727777777 SE sv``
 
 ![Subscription input](https://github.com/bureus/MMM-Postnord/blob/master/docs/subscriptioninput.png)
 
@@ -52,7 +52,7 @@ Run ``$ node postnord-hash-generator.js remove``, this will prompt you for the s
 ![Subscription input](https://github.com/bureus/MMM-Postnord/blob/master/docs/remove.png) 
 
 ### Supported languages
-Default language is Swedish, but the module support english (en), norweigian (no), danish (da) and finish (fi).
+Default language is Swedish, but the module support english (en), norwegian (no), danish (da) and finish (fi).
 
 ## Screenshot
 

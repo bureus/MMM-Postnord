@@ -32,7 +32,7 @@ Module.register("MMM-Postnord", {
   },
   getStyles: function() {
     return [
-      this.file("/css/postnord.css"),
+      this.file("/css/postnord.css")
       //this.file("/css/fontawesome/all.min.css")
     ];
   },
@@ -94,13 +94,16 @@ Module.register("MMM-Postnord", {
       statusHeaderSpan.className = "xsmall bright";
       statusHeaderSpan.innerText = package.statusText.header;
       textDiv.appendChild(statusHeaderSpan);
-      if(package.estimatedTimeOfArrival){
-      let estimatedDelivery = document.createElement("span");
-      estimatedDelivery.className = "xsmall light";
-      let estimatedDateTime = new Date(package.estimatedTimeOfArrival);
-      estimatedDelivery.innerText = this.translate("ESTIMATED_DELIVERY")+": "+estimatedDateTime.toLocaleDateString();
-      textDiv.appendChild(estimatedDelivery);
-    }
+      if (package.estimatedTimeOfArrival) {
+        let estimatedDelivery = document.createElement("span");
+        estimatedDelivery.className = "xsmall light";
+        let estimatedDateTime = new Date(package.estimatedTimeOfArrival);
+        estimatedDelivery.innerText =
+          this.translate("ESTIMATED_DELIVERY") +
+          ": " +
+          estimatedDateTime.toLocaleDateString();
+        textDiv.appendChild(estimatedDelivery);
+      }
       let statusLocationSpan = document.createElement("span");
       statusLocationSpan.className = "xsmall light";
       statusLocationSpan.innerText = package.statusText.location;
@@ -111,7 +114,9 @@ Module.register("MMM-Postnord", {
       let weigthSpan = document.createElement("span");
       weigthSpan.className = "small light block";
       weigthSpan.style = "width: 30px;";
-      weigthSpan.innerText = package.totalWeight ? package.totalWeight : this.translate("MISSING");
+      weigthSpan.innerText = package.totalWeight
+        ? package.totalWeight
+        : this.translate("MISSING");
 
       packageDiv.appendChild(weigthSpan);
       wrapper.appendChild(packageDiv);
@@ -150,7 +155,7 @@ Module.register("MMM-Postnord", {
       case "DELIVERED":
         return "fas fa-check-circle";
       default:
-        return "fas fa-mail-bulk"
+        return "fas fa-mail-bulk";
     }
   }
 });

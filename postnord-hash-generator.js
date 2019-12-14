@@ -127,11 +127,14 @@ function validateSubscription(code, subscription) {
           subscription.hash = response.hash;
           subscription.status = "VERIFIED";
           db.get("subscriptions")
-            .find({ subscriptionId: subscription.subscriptionId, type: subscription.type })
+            .find({
+              subscriptionId: subscription.subscriptionId,
+              type: subscription.type
+            })
             .assign(subscription)
             .write();
         }
-        console.log("Subscription added: "+subscription.subscriptionId);
+        console.log("Subscription added: " + subscription.subscriptionId);
       })
       .catch(function(error) {
         console.log(
@@ -237,10 +240,16 @@ async function newSubscription() {
     let subscriptionId = params[0];
     let country = params[1];
     let language = params[2];
-    
-    if (params.length === 3 &&
+
+    if (
+      params.length === 3 &&
       (subscriptionId.includes("@") ||
-      (subscriptionId.length === 11 && parseInt(subscriptionId) > 0) && (country && countries.find(element => element == country) && language && languages.find(element => element == language)))
+        (subscriptionId.length === 11 &&
+          parseInt(subscriptionId) > 0 &&
+          country &&
+            countries.find(element => element == country) &&
+            language &&
+            languages.find(element => element == language)))
     ) {
       addSubscription(
         subscriptionId,
@@ -255,7 +264,7 @@ async function newSubscription() {
         subscriptionId.includes("@") ? "email" : "phone"
       );
     } else {
-      errorLog("Input ('"+input+"') is not valid...");
+      errorLog("Input ('" + input + "') is not valid...");
     }
   });
 }

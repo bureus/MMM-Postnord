@@ -59,7 +59,7 @@ module.exports = NodeHelper.create({
   },
   reclaimHash: async function(subscription) {
     return new Promise(resolve => {
-      debug("reclaimHash: request init with hash: "+subscription.hash);
+      debug("reclaimHash: request init with hash: " + subscription.hash);
       let options = {
         method: "GET",
         uri: "{0}/customer/v1/identity/reclaim/{1}?deviceid={2}&hash={3}&apikey={4}".format(
@@ -78,103 +78,95 @@ module.exports = NodeHelper.create({
           resolve(response);
         })
         .catch(function(error) {
-          log(
-            "reclaimHash failed: {0}".format(
-              JSON.stringify(error)
-            )
-          );
+          log("reclaimHash failed: {0}".format(JSON.stringify(error)));
         });
     });
   },
   getUserProfile: async function(subscription) {
     return new Promise(resolve => {
-        debug("getUserProfile: request init");
-        let options = {
-          method: "GET",
-          uri: "{0}/customer/v1/identity/accountinfo/{1}?deviceid={2}&hash={3}&apikey={4}".format(
-            this.config.baseUrl,
-            subscription.subscriptionId,
-            subscription.deviceId,
-            subscription.hash,
-            this.config.apiKey
-          ),
-          headers: this.config.headers,
-          json: true
-        };
-        request(options)
-          .then(function(response) {
-            debug("getUserProfile: {0}".format(JSON.stringify(response)));
-            resolve(response);
-          })
-          .catch(function(error) {
-            log("getUserProfile failed: {0}".format(JSON.stringify(error)));
-            resolve(null);
-          });
+      debug("getUserProfile: request init");
+      let options = {
+        method: "GET",
+        uri: "{0}/customer/v1/identity/accountinfo/{1}?deviceid={2}&hash={3}&apikey={4}".format(
+          this.config.baseUrl,
+          subscription.subscriptionId,
+          subscription.deviceId,
+          subscription.hash,
+          this.config.apiKey
+        ),
+        headers: this.config.headers,
+        json: true
+      };
+      request(options)
+        .then(function(response) {
+          debug("getUserProfile: {0}".format(JSON.stringify(response)));
+          resolve(response);
+        })
+        .catch(function(error) {
+          log("getUserProfile failed: {0}".format(JSON.stringify(error)));
+          resolve(null);
+        });
     });
   },
   getShipments: async function(subscription) {
     return new Promise(resolve => {
-        debug("getShipments: request init");
-        let options = {
-          method: "GET",
-          uri: "{0}/customer/v1/identity/recipients/{1}/shipments?deviceid={2}&hash={3}&apikey={4}".format(
-            this.config.baseUrl,
-            subscription.subscriptionId,
-            subscription.deviceId,
-            subscription.hash,
-            this.config.apiKey
-          ),
-          headers: this.config.headers,
-          json: true
-        };
-        request(options)
-          .then(function(response) {
-            debug("getShipments: {0}".format(JSON.stringify(response)));
-            resolve(response);
-          })
-          .catch(function(error) {
-            log(
-              "getShipments failed: {0}".format(
-                JSON.stringify(error)
-              )
-            );
-            resolve(null);
-          });
+      debug("getShipments: request init");
+      let options = {
+        method: "GET",
+        uri: "{0}/customer/v1/identity/recipients/{1}/shipments?deviceid={2}&hash={3}&apikey={4}".format(
+          this.config.baseUrl,
+          subscription.subscriptionId,
+          subscription.deviceId,
+          subscription.hash,
+          this.config.apiKey
+        ),
+        headers: this.config.headers,
+        json: true
+      };
+      request(options)
+        .then(function(response) {
+          debug("getShipments: {0}".format(JSON.stringify(response)));
+          resolve(response);
+        })
+        .catch(function(error) {
+          log("getShipments failed: {0}".format(JSON.stringify(error)));
+          resolve(null);
+        });
     });
   },
   getTrackAndTraceShipment: async function(id) {
     return new Promise(resolve => {
-        debug("getTrackAndTraceShipment: request init");
-        let options = {
-          method: "GET",
-          uri: "{0}/shipment/v4/trackandtrace/findByIdentifier.json?id={1}&locale={2}&apikey={3}".format(
-            this.config.baseUrl,
-            id,
-            this.config.locale,
-            this.config.apiKey
-          ),
-          headers: this.config.headers,
-          json: true
-        };
-        request(options)
-          .then(function(response) {
-            debug(
-              "getTrackAndTraceShipment({0}): {1}".format(
-                id,
-                JSON.stringify(response)
-              )
-            );
-            resolve(response);
-          })
-          .catch(function(error) {
-            log(
-              "getTrackAndTraceShipment failed: {0}:{1}".format(
-                response.statusCode,
-                JSON.stringify(error)
-              )
-            );
-            resolve(null);
-          });
+      debug("getTrackAndTraceShipment: request init");
+      let options = {
+        method: "GET",
+        uri: "{0}/shipment/v4/trackandtrace/findByIdentifier.json?id={1}&locale={2}&apikey={3}".format(
+          this.config.baseUrl,
+          id,
+          this.config.locale,
+          this.config.apiKey
+        ),
+        headers: this.config.headers,
+        json: true
+      };
+      request(options)
+        .then(function(response) {
+          debug(
+            "getTrackAndTraceShipment({0}): {1}".format(
+              id,
+              JSON.stringify(response)
+            )
+          );
+          resolve(response);
+        })
+        .catch(function(error) {
+          log(
+            "getTrackAndTraceShipment failed: {0}:{1}".format(
+              response.statusCode,
+              JSON.stringify(error)
+            )
+          );
+          resolve(null);
+        });
     });
   },
   getNewHash: async function(subscription) {
@@ -198,7 +190,7 @@ module.exports = NodeHelper.create({
       );
     }
     return subscription;
-},
+  },
   getSubscriptionsPackageInfo: async function() {
     const self = this;
     clearInterval(self.updatetimer);
@@ -231,7 +223,8 @@ module.exports = NodeHelper.create({
                 sender: {
                   name: parcelDetailedInfo.consignor.name
                 },
-                estimatedTimeOfArrival: parcelDetailedInfo.estimatedTimeOfArrival,
+                estimatedTimeOfArrival:
+                  parcelDetailedInfo.estimatedTimeOfArrival,
                 status: parcelDetailedInfo.status,
                 statusText: {
                   header: parcelDetailedInfo.statusText.header,
