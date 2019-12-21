@@ -15,7 +15,8 @@
 Module.register("MMM-Postnord", {
   defaults: {
     locale: "en",
-    refreshRateMin: "60"
+    refreshRateMin: "60",
+    deliveredPackagesCooldown: null
   },
   getScripts: function() {
     return ["moment.js"];

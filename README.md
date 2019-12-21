@@ -22,6 +22,7 @@ modules: [
             config: {
                 locale: "sv", //Optional, default is 'sv' allowed codes 'en', 'da', 'fi', 'no', 'sv'
                 refreshRateMin: "60" //Optional, default is 60 min
+                deliveredPackagesCooldown: "24" //Optional, hours a package should be visible until removed, default null always visible.
             }
         }
     ...

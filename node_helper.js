@@ -21,7 +21,7 @@ const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 const adapter = new FileSync("./modules/MMM-Postnord/db.json");
 const db = low(adapter);
-var debugMe = true;
+var debugMe = false;
 
 var config = {
   apiKey: "591aa0cdb8cf85d41fede9b027b1e1c7",
@@ -245,7 +245,19 @@ module.exports = NodeHelper.create({
                     )
                   : null
               };
-              packages.push(shipmentInfo);
+              if (
+                shipmentInfo.status == "DELIVERED" &&
+                this.config.deliveredPackagesCooldown
+              ) {
+                let deliveryDate = new Date(shipmentInfo.deliveryDate);
+                let now = new Date(Date.now());
+                let hrsSinceDelivery = (now - deliveryDate) / 1000 / 60 / 60;
+                if (hrsSinceDelivery < this.config.deliveredPackagesCooldown) {
+                  packages.push(shipmentInfo);
+                }
+              } else {
+                packages.push(shipmentInfo);
+              }
             }
           }
         }
