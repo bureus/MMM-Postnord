@@ -14,7 +14,8 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "string-format": "^2.0.0",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "awesome-phonenumber": "^2.36.0"
   },
   "devDependencies": {},
   "scripts": {

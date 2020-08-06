@@ -2,6 +2,7 @@
 
 const chalk = require("chalk");
 const rl = require("readline");
+const PhoneNumber = require("awesome-phonenumber");
 
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
@@ -72,10 +73,11 @@ async function prompt(question) {
 
 async function addSubscription(subscriptionId, type, language, country) {
   if (getSubscription(subscriptionId, type).length === 0) {
+    subscriptionIdFormatted = type === "phone" ? getPhoneNumberFormatted(subscriptionId, country) : subscriptionId;
     var deviceId = uuidv4();
     var register = await generateSubscription(
       deviceId,
-      subscriptionId,
+      subscriptionIdFormatted,
       language,
       country
     );
@@ -84,6 +86,7 @@ async function addSubscription(subscriptionId, type, language, country) {
       subscriptions
         .push({
           subscriptionId: subscriptionId,
+          subscriptionIdFormatted: subscriptionIdFormatted,
           type: type,
           deviceId: deviceId,
           language: language,
@@ -111,7 +114,7 @@ function validateSubscription(code, subscription) {
       method: "POST",
       uri: "{0}/customer/v1/identity/validate/{1}?apikey={2}".format(
         config.baseUrl,
-        subscription.subscriptionId,
+        subscription.subscriptionIdFormatted,
         config.apiKey
       ),
       headers: config.headers,
@@ -207,15 +210,22 @@ function listSubscriptions() {
   }
 }
 
+function isValidPhoneNumber(subscriptionId, country){
+  let pn = new PhoneNumber(subscriptionId, country);
+  return pn.isValid() && pn.isMobile();
+}
+
+function getPhoneNumberFormatted(subscriptionId, country){
+  let pn = new PhoneNumber(subscriptionId, country);
+  return pn.getCountryCode()+pn.getNumber('significant');
+}
+
 function removeSubscription() {
   const q = chalk.blue(
     "Type in phone number (example 46702136611) or email (example your.email@gmail.com) for the subscription you want to remove:\n"
   );
   prompt(q).then(subscriptionId => {
-    if (
-      subscriptionId.includes("@") ||
-      (subscriptionId.length === 11 && parseInt(subscriptionId) > 0)
-    ) {
+    if (subscriptionId) {
       var success = deleteSubscription(
         subscriptionId,
         subscriptionId.includes("@") ? "email" : "phone"
@@ -242,14 +252,10 @@ async function newSubscription() {
     let language = params[2];
 
     if (
-      params.length === 3 &&
-      (subscriptionId.includes("@") ||
-        (subscriptionId.length === 11 &&
-          parseInt(subscriptionId) > 0 &&
-          country &&
-            countries.find(element => element == country) &&
-            language &&
-            languages.find(element => element == language)))
+      params.length === 3 
+      && (country && countries.find(element => element == country))
+      && (language && languages.find(element => element == language))
+      && (subscriptionId.includes("@") || isValidPhoneNumber(subscriptionId,country))
     ) {
       addSubscription(
         subscriptionId,
