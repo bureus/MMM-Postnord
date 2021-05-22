@@ -17,14 +17,14 @@ Right now the module only supports incoming parcels. In the future support for t
 modules: [
     ...
     {
-            module: "MMM-Postnord",
-            position: "bottom_left",
-            config: {
-                locale: "sv", //Optional, default is 'sv' allowed codes 'en', 'da', 'fi', 'no', 'sv'
-                refreshRateMin: "60" //Optional, default is 60 min
-                deliveredPackagesCooldown: "24" //Optional, hours a package should be visible until removed, default null always visible.
-            }
+        module: "MMM-Postnord",
+        position: "bottom_left",
+        config: {
+            locale: "sv", //Optional, default is 'sv' allowed codes 'en', 'da', 'fi', 'no', 'sv'
+            refreshRateMin: "60", //Optional, default is 60 min
+            deliveredPackagesCooldown: "24" //Optional, hours a package should be visible until removed, default null always visible.
         }
+    }
     ...
 ]
 ```
